@@ -1,4 +1,4 @@
-2021.01.20
+2021.01.21
 import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,4 +6,13 @@ data = pd.read_csv('F:\\adaconda\\练习\\income.csv',header=1,index_col=0)
 print(data.iloc[:,1])
 plt.scatter(data.iloc[:,0],data.iloc[:,1])
 plt.show()
-
+x = data.iloc[:,0]
+y = data.iloc[:,1]
+model = tf.keras.Sequential()
+model.add(tf.keras.layers.Dense(1,input_shape=(1,)))
+model.summary()
+model.compile(optimizer='adam',
+              loss='mse'
+)
+history = model.fit(x,y,epochs=5000)
+model.predict(pd.Series(20))
